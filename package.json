@@ -1,0 +1,28 @@
+{
+  "name": "examination2",
+  "version": "1.0.0",
+  "description": "examination 2 in course 1DV523 att LNU",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.7.0",
+    "nodemon": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1dv523/dekes03-examination-2.git"
+  },
+  "author": "Daniel Ekerot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1dv523/dekes03-examination-2/issues"
+  },
+  "homepage": "https://github.com/1dv523/dekes03-examination-2#readme"
+}

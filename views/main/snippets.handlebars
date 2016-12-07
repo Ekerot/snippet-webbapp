@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="text-center">
+        <h1>Select snippet to show</h1>
+        {{#if snippets }}
+        <dl>
+            {{#each snippets}}
+                <dt><a href="/show/{{id}}" >{{this.name}}</a></dt>
+            {{/each}}
+        </dl>
+        {{/if}}
+    </div>
+</div>
