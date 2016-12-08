@@ -45,10 +45,11 @@ app.use(session({
 }));
 
 //use flash messages
-app.use(function(req, res, next) {
-    res.locals.flash = req.session.flash;
-    delete req.session.flash;
-
+app.use(function(request, response, next) {
+    if(request.session.flash) {
+        response.locals.flash = request.session.flash;
+        delete request.session.flash;
+    }
     next();
 });
 
@@ -63,7 +64,7 @@ app.use((err, req, res) => {
     res.status(400).render('errors/400')
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
     console.error(err.stack);
     res.status(500).render("errors/500");
 });

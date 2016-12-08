@@ -4,7 +4,7 @@
         {{#if snippets }}
         <dl>
             {{#each snippets}}
-                <dt><a href="/show/{{id}}" >{{this.name}}</a></dt>
+                <dt><a href="/show/{{id}}" >{{this.name}}</a> created at {{this.createdAt}}</dt>
             {{/each}}
         </dl>
         {{/if}}

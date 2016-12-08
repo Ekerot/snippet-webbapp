@@ -5,6 +5,12 @@
             <dl>
                 <textarea>{{this.snippet}}</textarea>
             </dl>
+            <form class="" action="/update/{{id}}" method="post">
+                <button class="btn btn-primary btn-lg" type="submit" name="snippet">UPDATE</button>
+            </form>
+            <form class="" action="/delete/{{id}}" method="post">
+                <button class="btn btn-primary btn-lg"type="submit" name="name">DELETE</button>
+            </form>
         {{/if}}
     </div>
 </div>

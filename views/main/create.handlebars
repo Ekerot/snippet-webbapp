@@ -3,6 +3,7 @@
         <h1>Create snippet</h1>
         <div>
             <form class="form-group" action="/create" method="post">
+                {{>validationErrors}}
                 <label>Name your snippet:</label>
                 <input type='text' class="snippet-name" name="name" value="{{snippetName}}" />
                 <br>
