@@ -2,12 +2,11 @@
     <div class="text-center">
         <h1>Create snippet</h1>
         <div>
-            <form class="form-group" action="/create" method="post">
-                {{>validationErrors}}
+            <form class="form-create" action="/create" method="post">
                 <label>Name your snippet:</label>
-                <input type='text' class="snippet-name" name="name" value="{{snippetName}}" />
+                <input type='text' class="snippet-name" name="name"/>
                 <br>
-                <textarea class="form-textarea" name="snippet" value="{{theSnippet}}"></textarea>
+                <textarea class="form-textarea" name="snippet"></textarea>
                 <br>
                 <button type="submit" class="btn btn-warning btn-lg">Save</button>
             </form>

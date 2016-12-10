@@ -1,12 +1,33 @@
-<div class="container">
-    <div class="text-center">
-        <h1>Select snippet to show</h1>
+
         {{#if snippets }}
-        <dl>
-            {{#each snippets}}
-                <dt><a href="/show/{{id}}" >{{this.name}}</a> created at {{this.createdAt}}</dt>
-            {{/each}}
-        </dl>
+                <div class="row">
+                {{#each snippets}}
+                    <div class="col s12 m6">
+                        <div class="card blue-grey brown lighten-3, z-depth-5">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{this.name}}</span>
+                                <form class="update-ta" action="/update/{{id}}" method="post">
+                                    <textarea name="snippet" class="show-snippet">{{this.snippet}}</textarea>
+                                    <button class="waves-effect waves-teal btn-flat" type="submit">UPDATE</button>
+                                </form>
+                                <form class="delete-button" action="/delete/{{id}}" method="post">
+                                    <button class="waves-effect waves-teal btn-flat" type="submit" name="name">DELETE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
         {{/if}}
-    </div>
-</div>
+
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+
+

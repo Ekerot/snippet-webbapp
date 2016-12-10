@@ -2,67 +2,73 @@
  * Created by ekerot on 2016-12-07.
  */
 
-let routers = require('express').Router();
+let router = require('express').Router();
 let SnippetDB = new require('../models/SnippetDB');
 
-routers.route("/show")
-    .get(function(req, res) {
+router.route('/update/:id')
+    .post(function (req, res) {
 
-        SnippetDB.find({}, function (err, snippets) {
-            console.log(snippets);
-            res.render("main/show", {snippets: snippets});
-            if (err) {
-                res.render("main/show", {
-                    flash: {type: "danger", text: err.message},
-                });
+        SnippetDB.findOneAndUpdate({_id: req.params.id}, {snippet: req.body.snippet},(err, updatedSnippet, next) => {
+            if(err) {
+                next(err);
             }
         });
-    });
 
-routers.route("/show")
-    .get(function(req, res) {
+        req.session.flash = {
+            type: "success",
+            message: "Your snippet is updated!"
+        };
 
-        SnippetDB.find({}, function (err, snippets) {
-            console.log(snippets);
-            res.render("main/show", {snippets: snippets});
-            if (err) {
-                res.render("main/show", {
-                    flash: {type: "danger", text: err.message},
-                });
-            }
-        });
+        res.redirect("/");
+
     });
 
 
-routers.route("/create")
+router.route("/delete/:id")
+    .post(function(req, res, next) {
+        SnippetDB.findOneAndRemove({_id: req.params.id}, function(err) {
+            if(err) {
+                next(err);
+            }
+        });
+        req.session.flash = {
+            type: "success",
+            message: "Your snippet is deleted!"
+        };
+        res.redirect("/");
+    });
+
+
+router.route('/create')
     .get(function (req, res) {
-        res.render("main/create", {snippetName: undefined, theSnippet: undefined});
+        res.render('main/create');
 
     })
     .post(function (req, res) {
 
-        let snippetName = req.body.snippetName;
-        let theSnippet = req.body.theSnippet;
+        let newSnippet = new SnippetDB({
 
+            name: req.body.name,
+            snippet: req.body.snippet
 
-        console.log(theSnippet);
-
-        let snippet = new SnippetDB({
-            name: snippetName,
-            snippet: theSnippet
         });
 
-        snippet.save()
+        newSnippet.save()
             .then(function () {
-                res.redirect(303, '/show');
+                req.session.flash = {type: 'success', message: 'You have created a snippet successfully! Congratulations!'};
+                res.redirect('/');
 
-                request.session.flash = {
-                    type: 'sucess',
-                    text: 'You have created a snippet sucessfully! Congratulations!'
-                };
-            }).catch(function(err){
-            console.log(err.message)
-        })
+            }).catch(function (err) {
+
+            req.session.flash = {
+                type: 'danger',
+                intro: 'Something went wrong!',
+                message: err.message
+            };
+
+            res.redirect("/create");
+
+        });
     });
 
-module.exports = routers;
+module.exports = router;

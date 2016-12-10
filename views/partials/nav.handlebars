@@ -1,25 +1,19 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/snippets">Show snippets</a></li>
-                <li><a href="/create">Create snippets</a></li>
-            </ul>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo right"><img class="logo" src="/images/logo.png" alt="snippet logo"></a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="/create">Create snippets</a></li>
+            <a href="register/" class="register, waves-effect waves-light btn">Register your account today!</a>
+        </ul>
 
-            <form class="login-form" method="post" action="/login/">
-                <input class="username" type="text" name="username" value="" placeholder="username" required><br>
-                <input class="password" type="password" name="password" value="" placeholder="password" required><br>
-                <button class="login-button">Login</button>
-            </form>
-
-        </div>
     </div>
-</div>
+    <div>
+    <form class="login-form" method="post" action="/login/">
+        <input class="username" type="text" name="username" value="" placeholder="username" required><br>
+        <input class="password" type="password" name="password" value="" placeholder="password" required><br>
+        <button class="login-button, waves-effect waves-light btn">Login</button>
+    </form>
+    </div>
+</nav>
+

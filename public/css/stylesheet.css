@@ -1,25 +1,17 @@
-html{
-    height: 100%;
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-body{
-    padding-top:48px;
-    height: 100vh;
-}
-
-.navbar-nav .btn-link {
-    padding-top:15px;
-    padding-bottom: 15px;
-    line-height: 20px;
-    text-decoration: none;
-    color:#999;
-}
-.navbar-nav .btn-link:hover {
-    color:#fff;
+.logo{
+    height: 70px;
 }
 
 .login-form{
     float: right;
+    margin-right: 3%;
+    color: black;
 }
 
 .username{
@@ -38,13 +30,43 @@ body{
     float: left;
 }
 
+
+.register{
+    float:right;
+    margin-top:30%;
+    position: relative;
+
+}
+
 .row{
     margin-right: 0;
     margin-left: 0;
 }
 
-textarea{
-    width: 700px;
-    height: 500px;
+.form-textarea {
+    width: 593px;
+    height: 450px;
+}
+
+#flash{
+    margin-top: 1%;
+    margin-left: 40%;
+}
+
+.row{
+    margin:20%;
+    margin-top: 5%;
+}
+
+.show-snippet{
+    border: ridge 2px;
+    padding: 5px;
+    min-height: 20em;
+    overflow: auto;
+}
+
+.create-login, .form-create{
+    width: 50%;
+    margin-left: 20%;
 }
 
