@@ -35,8 +35,8 @@ router.route("/delete/:id")
             type: "success",
             message: "Your snippet is deleted!"
         };
-        res.redirect("/");
     });
+
 
 
 router.route('/create')

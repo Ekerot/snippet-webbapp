@@ -4,14 +4,18 @@
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="/">Home</a></li>
             <li><a href="/create">Create snippets</a></li>
-            <a href="register/" class="register, waves-effect waves-light btn">Register your account today!</a>
+            {{#if user}}
+            <p class="right">{{this.username}}</p>
+            {{else}}
+                <a href="register/" class="register, waves-effect waves-light btn">Register your account today!</a>
+            {{/if}}
         </ul>
 
     </div>
     <div>
     <form class="login-form" method="post" action="/login/">
-        <input class="username" type="text" name="username" value="" placeholder="username" required><br>
-        <input class="password" type="password" name="password" value="" placeholder="password" required><br>
+        <input class="username" type="text" name="username" value="" placeholder="username"><br>
+        <input class="password" type="password" name="password" value="" placeholder="password"><br>
         <button class="login-button, waves-effect waves-light btn">Login</button>
     </form>
     </div>

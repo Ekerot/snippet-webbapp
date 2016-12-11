@@ -13,42 +13,16 @@ router.route('/register').get(function(req, res) {
 })
     .post(function (req, res) {
 
-        let userSchema = new Users({
+        let user = new Users({
 
             username: req.body.username,
             name: req.body.name,
             email: req.body.email,
-            reemail: req.body.reemail,
             password: req.body.password,
-            repassword: req.body.repassword
 
         });
 
-        userSchema.path('password', validate(function(password){
-            return password.length >= 8;
-        }));
-
-        userSchema.pre('save', function(next) {
-
-            let user = this;
-
-            bcrypt.genSalt(15, function(err, salt){
-                if(err){
-                    return next(err);
-                }
-
-                bcrypt.hash(user.password, salt, null, function(err, hash){
-
-                    if(err){
-                        return next(err);
-                    }
-                    user.password = hash;
-                    next();
-                });
-            });
-        });
-
-        userSchema.save()
+        user.save()
             .then(function () {
                 req.session.flash = {type: 'success', message: 'You have registered successfully! Congratulations!'};
                 res.redirect('/');
@@ -61,9 +35,12 @@ router.route('/register').get(function(req, res) {
                 message: err.message
             };
 
-            res.redirect("/create");
+            res.redirect("/register");
+
 
         });
     });
+
+
 
 module.exports = router;

@@ -56,6 +56,8 @@ app.use(function(request, response, next) {
 //routes
 app.use('/', require('./routes/main.js'));
 app.use('/', require('./routes/snippets.js'));
+app.use('/', require('./routes/login.js'));
+app.use('/', require('./routes/userSession.js'));
 
 //errors on server
 app.use((req, res) => res.status(404).render('errors/404'));
