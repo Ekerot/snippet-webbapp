@@ -44,6 +44,11 @@ app.use(session({
     }
 }));
 
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+});
+
 //use flash messages
 app.use(function(request, response, next) {
     if(request.session.flash) {
@@ -63,12 +68,14 @@ app.use('/', require('./routes/userSession.js'));
 app.use((req, res) => res.status(404).render('errors/404'));
 
 app.use((err, req, res) => {
-    console.error(err.stack);
     res.status(400).render('errors/400')
 });
 
 app.use((err, req, res) => {
-    console.error(err.stack);
+    res.status(403).render('errors/403')
+});
+
+app.use((err, req, res) => {
     res.status(500).render("errors/500");
 });
 

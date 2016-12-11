@@ -9,6 +9,7 @@ let mongoose = require("mongoose");
 //defining a schema for the Snippets
 let snippetSchema = mongoose.Schema
 ({
+    username: {type: String},
     name: {type: String, required: true},
     snippet: {type: String, required: true},
     createdAt: {

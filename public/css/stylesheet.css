@@ -43,10 +43,7 @@ body {
     margin-left: 0;
 }
 
-.form-textarea {
-    width: 593px;
-    height: 450px;
-}
+
 
 #flash{
     margin-top: 1%;
@@ -68,5 +65,13 @@ body {
 .create-login, .form-create{
     width: 50%;
     margin-left: 20%;
+}
+
+.container-create{
+    margin-top:5%;
+    margin-left: 20%;
+    height: 50%;
+    width: 50%;
+
 }
 

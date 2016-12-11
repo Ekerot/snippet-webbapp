@@ -5,8 +5,9 @@
 let router = require('express').Router();
 let SnippetDB = new require('../models/SnippetDB');
 
-router.route('/update/:id')
-    .post(function (req, res) {
+router.post('/update/:id',function (req, res) {
+
+    if(req.session && req.session.user){
 
         SnippetDB.findOneAndUpdate({_id: req.params.id}, {snippet: req.body.snippet},(err, updatedSnippet, next) => {
             if(err) {
@@ -21,11 +22,19 @@ router.route('/update/:id')
 
         res.redirect("/");
 
-    });
+    }
+
+    else{
+
+        res.render('errors/403')
+
+    }
+});
 
 
-router.route("/delete/:id")
-    .post(function(req, res, next) {
+router.post("/delete/:id", function(req, res, next) {
+
+    if(req.session && req.session.user){
         SnippetDB.findOneAndRemove({_id: req.params.id}, function(err) {
             if(err) {
                 next(err);
@@ -35,19 +44,38 @@ router.route("/delete/:id")
             type: "success",
             message: "Your snippet is deleted!"
         };
-    });
+
+        res.redirect("/");
+
+    }
+    else{
+        res.render('errors/403')
+    }
+});
 
 
 
 router.route('/create')
-    .get(function (req, res) {
-        res.render('main/create');
+    .get(function (req, res, next) {
+
+        if(req.session && req.session.user) {
+
+            res.render('main/create');
+
+        }
+
+        else{
+            res.render('errors/403')
+        }
 
     })
     .post(function (req, res) {
 
+
+
         let newSnippet = new SnippetDB({
 
+            username: req.session.user.username,
             name: req.body.name,
             snippet: req.body.snippet
 

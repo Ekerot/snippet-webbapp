@@ -1,8 +1,7 @@
 <div class="flash-message">
 {{#if flash }}
     <div class="{{flash.type}} text-center" id="flash">
-        <i class="material-icons">info_outline</i><p>{{flash.intro}}</p>
-            {{flash.message}}
+        <i class="material-icons">info_outline</i>{{flash.intro}} {{flash.message}}
     </div>
 {{/if}}
 </div>

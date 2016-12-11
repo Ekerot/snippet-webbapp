@@ -11,22 +11,47 @@ router.post('/login', function(req,res){
 
     Users.findOne({username: req.body.username}, function(err, user) {
 
-        user.comparePassword(req.body.password, function(err, userpass){
-            if(err){
-                res.status(422).send('problem',err.message)
-            } else if(!userpass){
-                console.log(err);
-                req.session.flash = {
-                    type: 'danger',
-                    message: 'You have entered wrong password!'
-                };
-            } else {
-                res.redirect('/')
-            }
-        });
+        if(!user){
+            req.session.flash = {
+                type: 'danger',
+                message: 'No user exists with that username!'
+            };
+            res.redirect('/');
+        }
+
+        else {
+
+            user.comparePassword(req.body.password, function (err, userpass) {
+                if (err) {
+                    res.status(422).send('problem', err.message)
+                } else if (!userpass) {
+                    console.log(err);
+                    req.session.flash = {
+                        type: 'danger',
+                        message: 'You have entered wrong password!'
+                    };
+                    res.redirect('/')
+                } else {
+                    req.session.flash = {
+                        type: 'success',
+                        message: 'You are logged in!'
+                    };
+
+                    res.locals.session = req.session;
+
+                    req.user = user;
+                    delete req.user.password;
+                    req.session.user = user;
+                    res.redirect('/');
+                }
+            });
+        }
     });
+});
 
-
+router.get('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 module.exports = router;

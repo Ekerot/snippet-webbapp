@@ -1,15 +1,18 @@
-<div class="container">
-    <div class="text-center">
-        <h1>Create snippet</h1>
-        <div>
-            <form class="form-create" action="/create" method="post">
-                <label>Name your snippet:</label>
-                <input type='text' class="snippet-name" name="name"/>
-                <br>
-                <textarea class="form-textarea" name="snippet"></textarea>
-                <br>
-                <button type="submit" class="btn btn-warning btn-lg">Save</button>
-            </form>
+<div class="container-create">
+    <div class="col s12 m6">
+        <div class="card blue-grey brown lighten-3, z-depth-5">
+            <div class="card-content white-text">
+                <span class="card-title">Create snippet</span>
+                <form class="form-create" action="/create" method="post">
+                    <label>Name your snippet:</label>
+                    <input type='text' class="snippet-name" name="name"/>
+                    <br>
+                    <textarea class="show-snippet" name="snippet"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-warning btn-lg">Save</button>
+                </form>
+            </div>
+            <p>
         </div>
     </div>
 </div>

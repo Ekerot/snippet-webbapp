@@ -4,8 +4,9 @@
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="/">Home</a></li>
             <li><a href="/create">Create snippets</a></li>
-            {{#if user}}
-            <p class="right">{{this.username}}</p>
+            {{#if session.user}}
+                <span class="new badge" data-badge-caption="">Welcome {{session.user.username}}</span>
+                <a href="logout/" class="register, waves-effect waves-light btn">Logout</a>
             {{else}}
                 <a href="register/" class="register, waves-effect waves-light btn">Register your account today!</a>
             {{/if}}

@@ -14,6 +14,7 @@ router.route('/')
            let context = {
                 snippets: snippets.map(function(snippets){
                     return {
+                        username: snippets.username,
                         name: snippets.name,
                         snippet: snippets.snippet,
                         createdAt: snippets.createdAt,

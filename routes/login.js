@@ -29,18 +29,21 @@ router.route('/register').get(function(req, res) {
 
             }).catch(function (err) {
 
-            req.session.flash = {
-                type: 'danger',
-                intro: 'Something went wrong!',
-                message: err.message
-            };
+                req.session.flash = {
+                    type: 'danger',
+                    message: err.message
+                };
+
+                req.session.flash = {
+                    type: 'danger',
+                    message: err.errors.password.message
+                };
+
+                console.log(err.stack)
 
             res.redirect("/register");
 
-
         });
     });
-
-
 
 module.exports = router;

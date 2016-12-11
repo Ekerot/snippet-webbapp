@@ -7,25 +7,22 @@
 let mongoose = require("mongoose");
 let bcrypt = require('bcrypt-nodejs');
 
-/*userSchema.path('password', validate(function(password){
-    return password.length >= 8;
-}));*/
+var minlength = [8, 'The value of your password is shorter than the minimum allowed length ({MINLENGTH}).'];
+var maxlength = [30, 'The value of your username is greater than the maximum allowed length ({MAXLENGTH}).'];
 
 //defining a schema for the login
 let userSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
+    username: {type: String, required: true, unique: true, maxlength: maxlength},
     name: {type: String, required: true},
     email: { type: String, required: true, unique: true},
-    password: { type: String, required: true },
+    password: { type: String, required: true, minlength: minlength}
 });
-
-
 
 userSchema.pre('save', function(next) {
 
     let user = this;
 
-    bcrypt.genSalt(12, function(err, salt){
+    bcrypt.genSalt(10, function(err, salt){
         if(err){
             return next(err);
         }
