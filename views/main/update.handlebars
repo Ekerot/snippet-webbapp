@@ -1,0 +1,21 @@
+
+<div class="container-create">
+    <div class="col s12 m6">
+        {{#each snippets}}
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Update snippet</span>
+                    <form class="form-create" action="/confirmed/{{id}}" method="post">
+                        <label>Snippet name:</label>
+                        {{this.uname}}
+                        <br>
+                        <textarea class="show-snippet" name="usnippet">{{this.usnippet}}</textarea>
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-lg">Save</button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+

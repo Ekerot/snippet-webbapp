@@ -4,25 +4,26 @@
  * Created by ekerot on 2016-12-09.
  */
 
-let mongoose = require("mongoose");
-let bcrypt = require('bcrypt-nodejs');
+const mongoose = require("mongoose");
+const bcrypt = require('bcrypt-nodejs');
 
-var minlength = [8, 'The value of your password is shorter than the minimum allowed length ({MINLENGTH}).'];
-var maxlength = [30, 'The value of your username is greater than the maximum allowed length ({MAXLENGTH}).'];
+const minlength = [8, 'The value of your password is shorter than the minimum allowed length ({MINLENGTH}).'];
+const maxlength = [30, 'The value of your username is greater than the maximum allowed length ({MAXLENGTH}).'];
 
 //defining a schema for the login
 let userSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true, maxlength: maxlength},
     name: {type: String, required: true},
     email: { type: String, required: true, unique: true},
-    password: { type: String, required: true, minlength: minlength}
+    password: { type: String, required: true, minlength: minlength} // pre save validation is runned before self assigned pre saves
 });
 
+//making a pre dave that hashing the password
 userSchema.pre('save', function(next) {
 
     let user = this;
 
-    bcrypt.genSalt(10, function(err, salt){
+    bcrypt.genSalt(10, function(err, salt){  //let´ salt it aswell!
         if(err){
             return next(err);
         }
@@ -39,6 +40,7 @@ userSchema.pre('save', function(next) {
     });
 });
 
+//comparing passwords to authenticate user
 userSchema.methods.comparePassword = function(candidatePassword, callback){
     bcrypt.compare(candidatePassword, this.password, function(err, res){
 
@@ -47,7 +49,6 @@ userSchema.methods.comparePassword = function(candidatePassword, callback){
         }
 
         callback(null, res);
-
     })
 };
 

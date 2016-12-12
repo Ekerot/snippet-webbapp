@@ -1,24 +1,23 @@
+
 {{#if snippets }}
     <div class="row">
         {{#each snippets}}
-            <div class="col s12 m6">
                 <div class="card blue-grey brown lighten-3, z-depth-5">
                     <div class="card-content white-text">
                         <span class="card-title">{{this.name}}</span>
-                        <form class="update-ta" action="/update/{{id}}" method="post">
-                            <textarea name="snippet" class="show-snippet">{{this.snippet}}</textarea>
-                            <button class="waves-effect waves-teal btn-flat" type="submit">UPDATE</button>
-                        </form>
+                            <pre><code id="snippet-text">{{this.snippet}}</code></pre>
+                            <a class="waves-effect waves-teal btn-flat" href="/update/{{id}}">update</a>
                         <form class="delete-button" action="/delete/{{id}}" method="post">
                             <button class="waves-effect waves-teal btn-flat" type="submit" name="name">DELETE</button>
+                            <span class="right">created by {{this.username}}</span>
                         </form>
-                        created by {{this.username}}
                     </div>
                     <p>
                 </div>
-            </div>
         {{/each}}
     </div>
 {{/if}}
+
+
 
 

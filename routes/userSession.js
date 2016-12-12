@@ -1,8 +1,10 @@
 'use strict';
 
-/*
+/**
  * Created by ekerot on 2016-12-11.
  */
+
+//TODO - Fix bug - when trying to register with same username as already exists in the dbs send error message - why Unhandled promise rejection ??
 
 let router = require('express').Router();
 let Users = new require('../models/Users');

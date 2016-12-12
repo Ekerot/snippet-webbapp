@@ -10,6 +10,7 @@ body {
 
 .login-form{
     float: right;
+    margin-top: 7%;
     margin-right: 3%;
     color: black;
 }
@@ -38,28 +39,14 @@ body {
 
 }
 
-.row{
-    margin-right: 0;
-    margin-left: 0;
-}
-
-
-
 #flash{
     margin-top: 1%;
     margin-left: 40%;
 }
 
 .row{
-    margin:20%;
+    margin:15%;
     margin-top: 5%;
-}
-
-.show-snippet{
-    border: ridge 2px;
-    padding: 5px;
-    min-height: 20em;
-    overflow: auto;
 }
 
 .create-login, .form-create{
@@ -75,3 +62,13 @@ body {
 
 }
 
+.show-snippet{
+    border: ridge 2px;
+    padding: 5px;
+    min-height: 20em;
+    overflow: auto;
+}
+
+code{
+    height: 10%;
+}
