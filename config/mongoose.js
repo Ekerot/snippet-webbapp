@@ -3,6 +3,11 @@
 /**
  * Created by ekerot on 2016-12-01.
  */
+
+/**
+ * Function to connect, disconnect
+ */
+
 let mongoose = require('mongoose');
 
 module.exports =  function() {

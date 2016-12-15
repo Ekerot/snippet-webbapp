@@ -7,15 +7,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt-nodejs');
 
-const minlength = [8, 'The value of your password is shorter than the minimum allowed length ({MINLENGTH}).'];
-const maxlength = [30, 'The value of your username is greater than the maximum allowed length ({MAXLENGTH}).'];
-
 //defining a schema for the login
 let userSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true, maxlength: maxlength},
-    name: {type: String, required: true},
+    username: {type: String, required: true, unique: true, maxlength: 30},
+    name: {type: String, required: true, maxlength: 30},
     email: { type: String, required: true, unique: true},
-    password: { type: String, required: true, minlength: minlength} // pre save validation is runned before self assigned pre saves
+    password: { type: String, required: true, minlength: 8} // pre save validation is runned before self assigned pre saves
 });
 
 //making a pre dave that hashing the password

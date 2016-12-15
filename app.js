@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
+app.use(session({   //create a session
     name:   "thesnippetserversession",
     secret: "8kdDkdfn3948skjfi9JD9jdke24",
     saveUninitialized: false,
@@ -41,7 +41,8 @@ app.use(session({
     cookie: {
         secure: false,
         httpOnly: true,
-    }
+    },
+    maxAge: 3600000
 }));
 
 app.use(function(req,res,next){

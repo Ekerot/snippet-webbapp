@@ -7,10 +7,10 @@
 let router = require('express').Router();
 let SnippetDB = new require('../models/SnippetDB');
 
-router.route('/update/:id')
+router.route('/update/:id')  //function to send information for view
     .get(function(req, res) {
 
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user) {  //authorize
 
                 SnippetDB.find({_id: req.params.id}, function (err, snippets) {
 
@@ -32,6 +32,7 @@ router.route('/update/:id')
                                 intro: 'Something went wrong!',
                                 message: err.message},
                         });
+
                     }
 
                     res.render('main/update', context);
@@ -44,11 +45,11 @@ router.route('/update/:id')
         }
 });
 
-router.post('/confirmed/:id', function (req, res) {
+router.post('/confirmed/:id', function (req, res) { //function to update snippets
 
-    if (req.session && req.session.user) {
+    if (req.session && req.session.user) {  // authorize
 
-        SnippetDB.findOneAndUpdate({_id: req.params.id}, {snippet: req.body.usnippet}, (err, updatedSnippet, next) => {
+        SnippetDB.findOneAndUpdate({_id: req.params.id}, {snippet: req.body.usnippet}, (err, updatedSnippet, next) => { //find snippet  and change/update
             if (err) {
                 next(err);
             }
@@ -72,10 +73,11 @@ router.post('/confirmed/:id', function (req, res) {
 });
 
 
-router.post("/delete/:id", function (req, res, next) {
+router.post("/delete/:id", function (req, res, next) {  //delete function using findAndRemove method. For snippet
 
-    if (req.session && req.session.user) {
-        SnippetDB.findOneAndRemove({_id: req.params.id}, function (err) {
+    if (req.session && req.session.user) { //authorize
+
+        SnippetDB.findOneAndRemove({_id: req.params.id}, function (err) { //find snippet in dbs
             if (err) {
                 next(err);
             }
@@ -89,37 +91,37 @@ router.post("/delete/:id", function (req, res, next) {
 
     }
     else {
-        res.render('errors/403')
+        res.render('errors/403') // rendering 403 if not authorized
     }
 });
 
 
-router.route('/create')
+router.route('/create')  //create function to create snippet
     .get(function (req, res, next) {
 
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user) {  //authorize user with session
 
             res.render('main/create');
 
         }
 
         else {
-            res.render('errors/403')
+            res.render('errors/403') //if not authorized
         }
 
     })
     .post(function (req, res) {
 
 
-        let newSnippet = new SnippetDB({
+        let newSnippet = new SnippetDB({  //creating schema and for new snippet
 
-            username: req.session.user.username,
+            username: req.session.user.username, //needs to get the username from the user-collection in dbs
             name: req.body.name,
             snippet: req.body.snippet
 
         });
 
-        newSnippet.save()
+        newSnippet.save()  // save snippet
             .then(function () {
                 req.session.flash = {
                     type: 'success',
