@@ -41,7 +41,7 @@ router.route('/update/:id')  //function to send information for view
             }
 
             else{
-            res.render('errors/403');
+            res.render('errors/401');
         }
 });
 
@@ -66,7 +66,7 @@ router.post('/confirmed/:id', function (req, res) { //function to update snippet
 
     else {
 
-        res.render('errors/403')
+        res.render('errors/401')
 
     }
 
@@ -91,7 +91,7 @@ router.post("/delete/:id", function (req, res, next) {  //delete function using 
 
     }
     else {
-        res.render('errors/403') // rendering 403 if not authorized
+        res.render('errors/401') // rendering 403 if not authorized
     }
 });
 
@@ -106,7 +106,7 @@ router.route('/create')  //create function to create snippet
         }
 
         else {
-            res.render('errors/403') //if not authorized
+            res.render('errors/401') //if not authorized
         }
 
     })
