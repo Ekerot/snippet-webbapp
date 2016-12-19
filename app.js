@@ -10,9 +10,11 @@ const session = require('express-session');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
-let mongoose = require('./config/mongoose.js');
+const mongoose = require('./config/mongoose.js');
+const helmet = require('helmet')
 
 const app = express();
+app.use(helmet());
 const port = process.env.PORT || 8000;
 
 //------------CONFIGURATIONS----------------------------
